@@ -54,7 +54,7 @@ public class PaymentDetailController : ControllerBase
             if (!PaymentDetailExists(paymentdetailid))
             {
                 return NotFound();
-            }
+            } 
             else
             {
                 throw;
