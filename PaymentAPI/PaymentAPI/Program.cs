@@ -21,6 +21,12 @@ if (app.Environment.IsDevelopment())
     app.MapScalarApiReference(); // scalar
 }
 
+// So API can be used from different origin and port (Angular)
+app.UseCors(options => 
+options.WithOrigins("http://localhost:4200")
+.AllowAnyMethod()
+.AllowAnyHeader());
+
 app.UseAuthorization();
 
 app.MapControllers();
