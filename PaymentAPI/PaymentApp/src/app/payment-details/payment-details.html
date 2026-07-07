@@ -6,6 +6,23 @@
         <app-payment-detail-form></app-payment-detail-form>
     </div>
     <div class="col-6">
-        list payment details
+        <ul class="list-group">
+            <!-- 
+            It doesnt load the data fetched from API until there was some clicking/signal sent from user 
+            Zoneless mode is now the default, automatic patching is gone - Angular only re-renders when it detects signal changes
+            -->
+            @for (paymentDetail of service.list; track service.list) {
+                <li class="list-group-item d-flex justify-content-between align-items-start mb-2 border px-4 py-3 rounded-3">
+                    <div class="flex-grow-1 mouse-hover">
+                        <div class="fw-bold">{{paymentDetail.cardOwnerName}}</div>
+                        <div>{{paymentDetail.cardNumber}}</div>
+                        <div class="fw-bold">{{paymentDetail.expirationDate}}</div>
+                    </div>
+                    <span class="text-secondary">
+                        <i class="fa-solid fa-trash-can fa-lg mouse-hover"></i>
+                    </span>
+                </li>
+            }
+        </ul>
     </div>
 </div>

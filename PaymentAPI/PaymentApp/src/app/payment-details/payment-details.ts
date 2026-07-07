@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { PaymentDetailForm } from "./payment-detail-form/payment-detail-form";
-import { PaymentDetail } from '../shared/payment-detail';
+import { PaymentDetailService } from '../shared/payment-detail-service';
 
 @Component({
   selector: 'app-payment-details',
@@ -11,7 +11,7 @@ import { PaymentDetail } from '../shared/payment-detail';
 export class PaymentDetails implements OnInit {
   // Inject of service
   // Old was using constructor
-  public service = inject(PaymentDetail)
+  public service = inject(PaymentDetailService)
 
   ngOnInit(): void {
     this.service.refreshList();

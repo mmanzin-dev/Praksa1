@@ -1,8 +1,9 @@
+// Consider this app.module.ts
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideRouter } from '@angular/router';
-
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
+import { provideToastr } from 'ngx-toastr';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -10,6 +11,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     // Must add this to use HttpClient
     // Old was HttpClientModule in app.module.ts
-    provideHttpClient()
+    provideHttpClient(),
+    provideToastr()
   ]
 };
