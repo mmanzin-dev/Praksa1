@@ -1,0 +1,117 @@
+<div class="row">
+    <div class="col-3">
+        @if (isDiv1Visible == true) {
+            <div class="bg-primary p-4">
+                div 1
+            </div>
+        }
+    </div>
+    <div class="col-3">
+        <input type="checkbox" [(ngModel)]="isOffer"> Is Offer Code Available
+        @if (isOffer) {
+            <input type="text" placeholder="Enter Code">
+        } @else {
+            <p> No Offer Code Needed </p>
+        }
+    </div>
+    <div class="col-3">
+        @if (orderStatus == "new") {
+            <h3>Order Placed</h3>
+        } @else if (orderStatus == "shipping") {
+            <h3>Order Shipped</h3>
+        } @else if (orderStatus == "delivered") {
+            <h3>Order Delivered</h3>
+        } @else {
+            <h3 class="text-danger">Order Cancelled</h3>
+        }
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-3">
+        <button class="btn btn-warning" (click)="toggleDiv1()">Toggle</button>
+        <span> ===> {{isDiv1Visible}}</span>
+    </div>
+</div>
+
+<hr>
+
+<!-- List iteration using @for -->
+<div class="row">
+    <div class="col-3">
+        <ul>
+            @for (item of cityList; track $index) {
+                <li>{{item}}</li>
+            }
+        </ul>
+    </div>
+    <div class="col-3">
+        @for (city of cityList; track $index) {
+            <button class="btn btn-success mx-2 my-2">{{city}}</button>
+        }
+    </div>
+    <div class="col-3">
+        <select class="form-select">
+            @for (item of cityList; track $index) {
+            <option>{{item}}</option>
+        }
+        </select>
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+    <div class="col-6">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>City</th>
+                    <th>Roll Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (item of studentList; track $index) {
+                    <tr>
+                        <td>{{$index + 1}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.city}}</td>
+                        <td>{{item.rollNo}}</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-3">
+        <!-- Select shows studentName but saves the studentId value which can then be shown in another div -->
+        <select [(ngModel)]="selectedStudent">
+            @for (item of studentList; track $index) {
+                <option [value]="item.studId">{{item.name}}</option>
+            }
+        </select>
+    </div>
+    <div class="col-2">
+        selectedStudent => {{selectedStudent}}
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+    @for (item of studentList; track $index) {
+    <div class="col-3">
+        <div class="card mt-2">
+            <div class="card-body">
+                <h4 class="card-title">{{item.name}}</h4>
+                <p class="card-text">{{item.studId}}</p>
+                <p class="card-text">{{item.city}}</p>
+                <p class="card-text">{{item.rollNo}}</p>
+                <a href="#" class="card-link">Edit</a>
+                <a href="#" class="card-link">Delete</a>
+            </div>
+        </div>
+    </div>
+    }
+</div>

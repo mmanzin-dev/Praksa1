@@ -3,6 +3,7 @@ import { Variables } from './components/variables/variables';
 import { DataBinding } from './components/data-binding/data-binding';
 import { DirectiveExample } from './components/directive-example/directive-example';
 import { NotFound } from './components/not-found/not-found';
+import { ControlFlow } from './components/control-flow/control-flow';
 
 export const routes: Routes = [
     {
@@ -18,6 +19,10 @@ export const routes: Routes = [
     {
         path:'databinding',
         component: DataBinding
+    },
+    {
+        path: 'controlflow',
+        component: ControlFlow
     },
     {
         path:'directives',
