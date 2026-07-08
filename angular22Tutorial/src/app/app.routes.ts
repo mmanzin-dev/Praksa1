@@ -4,6 +4,7 @@ import { DataBinding } from './components/data-binding/data-binding';
 import { DirectiveExample } from './components/directive-example/directive-example';
 import { NotFound } from './components/not-found/not-found';
 import { ControlFlow } from './components/control-flow/control-flow';
+import { TemplateForm } from './components/template-form/template-form';
 
 export const routes: Routes = [
     {
@@ -27,6 +28,10 @@ export const routes: Routes = [
     {
         path:'directives',
         component: DirectiveExample
+    },
+    {
+        path:'templateform',
+        component: TemplateForm
     },
     {
         // Route/page for when user wants to go to non-existing route/page
