@@ -1,1 +1,74 @@
-<p>directive-example works!</p>
+<!-- structural directives (depreciated) -->
+
+<!-- attribute directives -->
+<!-- dynamic classes, dynamic CSS -->
+
+<!-- component directives -->
+<!-- custom directives -->
+
+<div class="row">
+    <div class="col-3">
+        <!-- Controlled using variable in .ts file -->
+        <!-- Allows changing of div color based on variable -->
+        <!-- Dynamic class is ngClass-->
+        <div class="p-4" [ngClass]="divClassName">
+            Div 1
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="p-3" [ngClass]="isChecked == true ? 'bg-warning' : 'bg-primary'">
+            Div 2
+        </div>
+    </div>
+    <div class="col-3">
+        <input type="text" [(ngModel)]="inputText" class="form-control" placeholder="Enter 5 characters">
+        <h1 [ngClass]="inputText.length > 5 ? 'text-danger' : 'text-success'">{{inputText.length > 5 ? 'Input is greater than 5 characters' : 'Input is valid'}}</h1>
+    </div>
+    <div class="col-3">
+        <input type="text" [(ngModel)]="inputText" class="form-control" placeholder="Enter 5 characters">
+        <h1 [ngClass]="isTextValid ? 'text-danger' : 'text-success'">{{inputText.length > 5 ? 'Input is greater than 5 characters' : 'Input is valid'}}</h1>
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+    <div class="col-3">
+        <!-- Dynamic class -->
+        <button class="btn btn-success" (click)="changeDiv1Color('bg-success')">Success</button>
+        <button class="btn btn-danger" (click)="changeDiv1Color('bg-danger')">Failure</button>
+    </div>
+    <div class="col-3">
+        <input type="checkbox" [(ngModel)]="isChecked">
+        {{isChecked}}
+    </div>
+    <div class="col-3">
+        <button (click)="checkCharLength()" class="btn btn-success">Check Length</button>
+    </div>
+</div>
+
+<hr>
+<hr>
+<div class="row">
+    <div class="col-3">
+        <!-- Dynamic CSS is ngStyle -->
+        <!-- Here we use that global variable to change background color of the div -->
+        <div class="p-3" [ngStyle]="{'background-color': inputColor}">
+            Div 3
+        </div>
+    </div>
+    <div class="col-3" [ngStyle]="div4Css">
+        Div 4
+    </div>
+</div>
+<div class="row">
+    <div class="col-3">
+        <!-- Makes inputColor variable available globally -->
+        <!-- First we declared it in its own .ts file -->
+        <input type="color" [(ngModel)]="inputColor">
+    </div>
+    <div class="col-3">
+        <button (click)="changeType('circle')">Circle</button>
+        <button (click)="changeType('square')">Square</button>
+    </div>
+</div>
