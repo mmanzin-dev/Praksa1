@@ -1,2 +1,84 @@
-<p>data-binding works!</p>
-<h1>data binding example</h1>
+<table>
+    <tr>
+        <td>
+            <!-- Two way data binding -->
+            <!-- Using ngModel from FormsModule we can change the original variable using input box -->
+            <input type="text" [(ngModel)]="productName">
+        </td>
+        <td>
+            <!-- Two way data binding but using select box -->
+            <select [(ngModel)]="productName">
+                <option>Mobile</option>
+                <option>Laptop</option>
+                <option>Headphones</option>
+                <option>Charger</option>
+            </select>
+        </td>
+        <td>
+            <!-- Two way data binding makes checkbox true or false based on the original variable isProductActive -->
+            <input type="checkbox" [(ngModel)]="isProductActive">
+        </td>
+        <td>
+            isProductActive ===> {{isProductActive}}
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>
+            {{productName}}
+        </td>
+        <td>
+            <span>{{productPrice}}</span>
+        </td>
+        <td>
+            <!-- Interpolation -->
+            <!-- It works, but should use Property binding instead -->
+            <input type="text" maxLength="{{maxAllowedChar}}">
+        </td>
+        <td>
+            <!-- Property binding -->
+            <!-- Used to assign values to properties like maxLength, value, etc. -->
+            <input type="text" [maxLength]="maxAllowedChar">
+        </td>
+        
+        <td>
+            <!-- Interpolation -->
+            <input type="text" value="{{productName}}">
+        </td>
+        <td>
+            <!-- Property binding -->
+            <input type="text" [value]="productName">
+        </td>
+        <td>
+            <!-- Property binding -->
+            <input type="text" [value]="productName">
+        </td>
+        <td>
+            <input [type]="dynamicType">
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>
+            <!-- On Mouse Click -->
+            <button (click)="showAlert()"> Show Alert </button>
+        </td>
+        <td>
+            <!-- On Value Change -->
+            <select (change)="onDropdownChange()">
+                <option>Mobile</option>
+                <option>Laptop</option>
+                <option>Headphones</option>
+                <option>Charger</option>
+            </select>
+        </td>
+    </tr>
+</table>
+
+<div (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" style="background-color: red; width: 100px; height: 100px; border-radius: 50px;">
+
+</div>
