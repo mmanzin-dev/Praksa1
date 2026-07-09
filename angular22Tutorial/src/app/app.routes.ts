@@ -8,6 +8,7 @@ import { TemplateForm } from './components/template-form/template-form';
 import { ReactiveForm } from './components/reactive-form/reactive-form';
 import { Signal } from './components/signal/signal';
 import { SignalForm } from './components/signal-form/signal-form';
+import { GetApi } from './components/get-api/get-api';
 
 export const routes: Routes = [
     {
@@ -47,6 +48,10 @@ export const routes: Routes = [
     {
         path:'signalform',
         component: SignalForm
+    },
+    {
+        path:'getapi',
+        component: GetApi
     },
     {
         // Route/page for when user wants to go to non-existing route/page
