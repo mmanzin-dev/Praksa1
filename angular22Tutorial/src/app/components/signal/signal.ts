@@ -28,10 +28,12 @@ export class Signal {
     */
 
     // Second example, UI updates instantly on value change
+    /*
     setTimeout(() => {
       debugger;
       this.empMobileNo.set("0955551255")
     }, 2000);
+    */
   }
 
   changeEmpName() {
