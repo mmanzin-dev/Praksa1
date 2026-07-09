@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Master } from '../../services/master';
 
 @Component({
   selector: 'app-control-flow',
@@ -13,6 +14,9 @@ export class ControlFlow {
   orderStatus: string = "gone";
 
   cityList = ["Zagreb", "Bjelovar", "Osijek", "Rijeka", "Dubrovnik"];
+
+  // Service injection
+  masterSrv = inject(Master)
 
   studentList = [
     {studId: 9090, name: 'abc', city: 'gradA', rollNo: 120},
@@ -29,5 +33,18 @@ export class ControlFlow {
 
   toggleDiv1() {
     this.isDiv1Visible = !this.isDiv1Visible;
+  }
+
+  // Service injection tutorial
+  storeLoggedData() {
+    this.masterSrv.loggedUser = "servis_injekcija";
+  }
+
+  // Service tutorial
+  originalCardNo = "1111222233334444";
+  formattedCardNo: string = "";
+
+  constructor() {
+    this.formattedCardNo = this.masterSrv.getFormattedCardNo(this.originalCardNo);
   }
 }

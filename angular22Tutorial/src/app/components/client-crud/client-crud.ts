@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Master } from '../../services/master';
 
 @Component({
   selector: 'app-client-crud',
@@ -24,10 +25,16 @@ export class ClientCrud {
     logo: ""
   }
 
+  // Service inject tutorial
+  masterSrv = inject(Master);
+
   constructor() {
     this.getAllClients();
+    // On page load we need to read this service injection data
+    const loggedUserName = this.masterSrv.loggedUser;
   }
 
+  /*
   getAllClients() {
     this.http.get("https://api.freeprojectapi.com/api/SmartParking/GetAllClients").subscribe({
       next: (res: any) => {
@@ -39,9 +46,41 @@ export class ClientCrud {
       }
     })
   }
+  */
 
+  // Service tutorial, API is called from master.ts (service)
+  getAllClients() {
+    this.masterSrv.getClients().subscribe({
+      next: (res: any) => {
+        this.clientList.set(res.data);
+      },
+      error: (err: any) => {
+
+      }
+    })
+  }
+
+  /*
   onSaveClient() {
     this.http.post("https://api.freeprojectapi.com/api/SmartParking/AddClient", this.newClientObj).subscribe ({
+      next: (res: any) => {
+        if (res.result) {
+          alert("POST successful");
+          this.getAllClients();
+        } else {
+          alert("ERROR: " + res.message);
+        }
+      },
+      error: (res: any) => {
+
+      }
+    })
+  }
+  */
+
+  // Service tutorial, API is called from master.ts (service)
+  onSaveClient() {
+    this.masterSrv.saveClient(this.newClientObj).subscribe({
       next: (res: any) => {
         if (res.result) {
           alert("POST successful");
