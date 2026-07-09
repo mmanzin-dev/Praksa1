@@ -53,10 +53,10 @@ export class GetApi {
 
   getBusVendors() {
     this.http.get("https://api.freeprojectapi.com/api/BusBooking/GetBusVendors").subscribe({
-      next: (res:any) => {
+      next: (res: any) => {
         this.busVendorList.set(res);
       },
-      error: (err:any) => {
+      error: (err: any) => {
 
       }
     })
