@@ -6,6 +6,7 @@ import { NotFound } from './components/not-found/not-found';
 import { ControlFlow } from './components/control-flow/control-flow';
 import { TemplateForm } from './components/template-form/template-form';
 import { ReactiveForm } from './components/reactive-form/reactive-form';
+import { Signal } from './components/signal/signal';
 
 export const routes: Routes = [
     {
@@ -37,6 +38,10 @@ export const routes: Routes = [
     {
         path:'reactiveform',
         component: ReactiveForm
+    },
+    {
+        path:'signal',
+        component: Signal
     },
     {
         // Route/page for when user wants to go to non-existing route/page

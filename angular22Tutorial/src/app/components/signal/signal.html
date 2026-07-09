@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-3">
+        {{employeeName}}
+    </div>
+    <div class="col-3">
+        <!-- To print signal data type, call it like a function -->
+        {{empMobileNo()}}
+    </div>
+    <div class="col-3">
+        isActive = {{isActive()}}
+    </div>
+    <div class="col-3">
+        <ul>
+            @for (item of cityListSignal(); track $index) {
+                <li>{{item}}</li>
+            }
+        </ul>
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+    <div class="col-3">
+        <button class="btn btn-success" (click)="changeEmpName()">Change Employee Name</button>
+    </div>
+    <div class="col-3">
+        <button class="btn btn-success" (click)="changeMobile()">Change Employee Mobile Number </button>
+    </div>
+</div>
