@@ -1,0 +1,111 @@
+<div class="row">
+    <div class="col-8">
+        <div class="card">
+            <div class="card-header bg-warning">
+                Client List
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th>Sr No</th>
+                            <th>Client Name</th>
+                            <th>Business Name</th>
+                            <th>Contact Person</th>
+                            <th>Contact No</th>
+                            <th>Email</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (item of clientList(); track $index) {
+                            <tr>
+                                <td>{{$index + 1}}</td>
+                                <td>{{item.clientName}}</td>
+                                <td>{{item.businessName}}</td>
+                                <td>{{item.contactPerson}}</td>
+                                <td>{{item.contactNo}}</td>
+                                <td>{{item.email}}</td>
+                                <td>
+                                    <button (click)="onEdit(item)" class="btn btn-warning">Edit</button>
+                                </td>
+                                <td>
+                                    <button (click)="onDelete(item.clientId)" class="btn btn-danger mx-1">Delete</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header bg-warning">
+                New Client
+            </div>
+            <div class="card-body">
+                <form Form>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="clientName" class="form-label">Client Name</label>
+                            <input type="text" class="form-control" [(ngModel)]="newClientObj.clientName" id="clientName" name="clientName"
+                                placeholder="Enter client name" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="businessName" class="form-label">Business Name</label>
+                            <input type="text" class="form-control" [(ngModel)]="newClientObj.businessName" id="businessName" name="businessName"
+                                placeholder="Enter business name" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="contactPerson" class="form-label">Contact Person</label>
+                            <input type="text" class="form-control" [(ngModel)]="newClientObj.contactPerson" id="contactPerson" name="contactPerson"
+                                placeholder="Enter contact person" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="contactNo" class="form-label">Contact No</label>
+                            <input type="text" class="form-control" [(ngModel)]="newClientObj.contactNo" id="contactNo" name="contactNo"
+                                placeholder="Enter contact no" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="altContactNo" class="form-label">Alt Contact No</label>
+                            <input type="text" class="form-control" [(ngModel)]="newClientObj.altContactNo" id="altContactNo" name="altContactNo"
+                                placeholder="Enter alt contact no" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" [(ngModel)]="newClientObj.email" id="email" name="email"
+                                placeholder="Enter email" />
+                        </div>
+                        <div class="col-12">
+                            <label for="logo" class="form-label">Logo</label>
+                            <input type="text" class="form-control" [(ngModel)]="newClientObj.logo" id="logo" name="logo"
+                                placeholder="Enter logo url" />
+                        </div>
+
+                        <div class="col-12 text-end mt-4">
+                            @if (newClientObj.clientId == 0) {
+                                <button type="button" (click)="onSaveClient()" class="btn btn-primary me-2">
+                                    Save
+                                </button>
+                            } @else {
+                                <button type="button" (click)="onUpdateClient()" class="btn btn-primary me-2">
+                                    Update
+                                </button>
+                            }
+
+                            <button type="reset" class="btn btn-secondary">
+                                Reset
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -9,6 +9,7 @@ import { ReactiveForm } from './components/reactive-form/reactive-form';
 import { Signal } from './components/signal/signal';
 import { SignalForm } from './components/signal-form/signal-form';
 import { GetApi } from './components/get-api/get-api';
+import { ClientCrud } from './components/client-crud/client-crud';
 
 export const routes: Routes = [
     {
@@ -52,6 +53,10 @@ export const routes: Routes = [
     {
         path:'getapi',
         component: GetApi
+    },
+    {
+        path: 'clientcrud',
+        component: ClientCrud
     },
     {
         // Route/page for when user wants to go to non-existing route/page
