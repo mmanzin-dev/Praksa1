@@ -1,35 +1,75 @@
 <div class="row">
-    <div class="col-12">
+    <div class="col-8">
         <div class="card">
+            <div class="card-header bg-warning">
+                Company List
+            </div>
             <div class="card-body">
-                <form>
+                
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header bg-warning">
+                New Company
+            </div>
+            <div class="card-body">
+                <!-- If using ngModel in form element you must declare a name attribute where ngModel is being used -->
+                <!-- To disable the form from being saved if invalid we reference ngForm in #form var -->
+                <form #form="ngForm">
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label for="companyName" class="form-label">Company Name</label>
-                            <input type="text" required minlength="5" class="form-control" id="companyName" name="companyName" placeholder="Enter company name" />
-                            <div class="text-danger">
-                                <span>This is Required</span>
-                                <span>Min 5 Char is Required</span>
-                            </div>
+                            <!-- Here for example we declared name attribute because we use ngModel -->
+                            <!-- #comName is template reference variable, reference of ngModel -->
+                            <input type="text" #companyName="ngModel" [(ngModel)]="companyObj.companyName" required minlength="5" class="form-control" name="companyName"
+                                placeholder="Enter company name" />
+                                <div class="text-danger">
+                                    <!-- Using JSON pipe we can see what we have to check for -->
+                                    <!-- Or just read from what you are requiring in the input element -->
+                                    <!-- {{companyName.errors | json}} -->
+                                    @if (companyName.errors?.['required']) {
+                                        <span>This is required</span>
+                                    }
+                                    @if (companyName.errors?.['minlength']) {
+                                        <span>Min 5 characters</span>
+                                    }
+                                </div>
                         </div>
                         <div class="col-md-6">
                             <label for="pinCode" class="form-label">Pin Code</label>
-                            <input type="text" required minlength="6" class="form-control" id="pinCode" name="pinCode" placeholder="Enter pin code" />
+                            <!-- ngModelChange will notify when ngModel value has changed -->
+                            <input type="text" #pinCode="ngModel" (ngModelChange)="onPinChange()" [(ngModel)]="companyObj.pinCode" required minlength="6" class="form-control" name="pinCode" placeholder="Enter pin code" />
                             <div class="text-danger">
-                                <span>Required</span>
-                                <span>Min 6 Char needed</span>
+                                @if (pinCode.errors?.['required']) {
+                                    <span>This is required</span>
+                                }
+                                @if (pinCode.errors?.['minlength']) {
+                                    <span>Min 6 characters</span>
+                                }
                             </div>
                         </div>
                         <div class="col-md-6">
                             <label for="address" class="form-label">Address</label>
-                            <textarea class="form-control" id="address" name="address" rows="3" placeholder="Enter address"></textarea>
+                            <textarea class="form-control" [(ngModel)]="companyObj.address" name="address" rows="3"
+                                placeholder="Enter address"></textarea>
                         </div>
                         <div class="col-md-6">
                             <label for="phone" class="form-label">Phone</label>
-                            <input type="text" required minlength="10" maxlength="10" class="form-control" id="phone" name="phone" placeholder="Enter phone number" />
+                            <input type="text" #phone="ngModel" [(ngModel)]="companyObj.phone" required minlength="10" class="form-control" name="phone" placeholder="Enter phone number" />
+                            <div class="text-danger">
+                                @if (phone.errors?.['required']) {
+                                    <span>This is required</span>
+                                }
+                                @if (phone.errors?.['minlength']) {
+                                    <span>Min 10 characters</span>
+                                }
+                            </div>
                         </div>
                         <div class="col-12 text-end mt-4">
-                            <button type="submit" class="btn btn-primary me-2">
+                            <!-- Pass the form as a reference to onSaveCompany function so user cant use inspect to remove disable attribute -->
+                            <button type="button" [disabled]="form.invalid" (click)="onSaveCompany(form)" class="btn btn-primary me-2">
                                 Save
                             </button>
                             <button type="reset" class="btn btn-secondary">
@@ -42,3 +82,4 @@
         </div>
     </div>
 </div>
+
